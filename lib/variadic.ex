@@ -40,7 +40,7 @@ defmodule Variadic do
     ## Functions are defined as defv (they will be public)
     ##
     defv :test_function do
-      # If arguments needed as a list this (binding()) should be the first thing called
+      # If arguments needed as a list or need arity then binding() should be the first thing called
       arguments = args_to_list(binding())
       work = arg1 + arg2
       {arg1, arg2, arg3, arg4, work, arguments}
