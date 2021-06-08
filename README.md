@@ -6,6 +6,8 @@ Arguments will named `arg1, arg2....argN` where `N` is `@max_arity`.
 
 Uninitialized arguments are set to nil
 
+**NOTE:** Currently doesn't support guards in the function head
+
 ## Example:
 
 ```
