@@ -56,7 +56,7 @@ defmodule Variadic do
     end
   end
 
-  Pass 3 arguments:
+  Pass 3 arguments (note arg4 is nil)::
     iex(2)> MyModule.test_function(1, 2, :hello)
     {1, 2, :hello, nil, 3, [1, 2, :hello]}
 
