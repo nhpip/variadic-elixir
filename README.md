@@ -2,7 +2,7 @@
 
 Simulates Variadic functions in Elixir (i.e functions with an unknown number of arguments)
 
-Arguments will named arg1, arg2....argN where N is @max_arity.
+Arguments will named `arg1, arg2....argN` where `N` is `@max_arity`.
 
 Uninitialized arguments are set to nil
 
