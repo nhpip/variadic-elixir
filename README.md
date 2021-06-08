@@ -17,7 +17,7 @@ Uninitialized arguments are set to nil
     ## Functions are defined as defv (they will be public)
     ##
     defv :test_function do
-      # If arguments needed as a list this (binding()) should be the first thing called
+      # If arguments needed as a list or need arity then binding() should be the first thing called
       arguments = args_to_list(binding())
       work = arg1 + arg2
       {arg1, arg2, arg3, arg4, work, arguments}
@@ -32,7 +32,9 @@ Uninitialized arguments are set to nil
       {arg1, arg2, x, [arity: arity, arguments: arguments]}
     end
   end
-
+```
+From the shell:
+```
   Pass 3 arguments:
     iex(2)> MyModule.test_function(1, 2, :hello)
     {1, 2, :hello, nil, 3, [1, 2, :hello]}
