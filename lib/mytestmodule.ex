@@ -22,26 +22,26 @@
 # SOFTWARE.
 #
 
-defmodule MyTestModule do
-  @moduledoc """
-  Simple test module to show Variadic functions
-  """
+ defmodule MyTestModule do
+   @moduledoc """
+   Simple test module to show Variadic functions
+   """
 
-  import Variadic
+   import Variadic
 
-  defv :test_function do
-    # If arguments needed as a list this should be the first thing called
-    arguments = args_to_list(binding())
-    work = arg1 + arg2
-    {arg1, arg2, arg3, arg4, work, arguments}
-  end
+   defv :test_function do
+     # If arguments needed as a list this should be the first thing called
+     arguments = args_to_list(binding())
+     work = arg1 + arg2
+     {arg1, arg2, arg3, arg4, work, arguments}
+   end
 
-  defv :other_function do
-    binding = binding()
-    ## Do work
-    x = 1 + 2 + 3
-    arguments = args_to_list(binding)
-    arity = get_arity(binding)
-    {arg1, arg2, x, [arity: arity, arguments: arguments]}
-  end
-end
+   defv :other_function do
+     binding = binding()
+     ## Do work
+     x = 1 + 2 + 3
+     arguments = args_to_list(binding)
+     arity = get_arity(binding)
+     {arg1, arg2, x, [arity: arity, arguments: arguments]}
+   end
+ end
