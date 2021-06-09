@@ -25,8 +25,6 @@
 defmodule Variadic do
   @moduledoc """
 
-  ====================================================================================
-
   Simulates Variadic functions in Elixir (i.e functions with an unknown number of arguments)
 
   Arguments will named arg1, arg2....argN where N is @max_arity.
@@ -43,7 +41,8 @@ defmodule Variadic do
         ## Functions are defined as defv (they will be public)
         ##
         defv :test_function do
-          # If arguments needed as a list or need arity then binding() should be the first thing called
+          # If arguments needed as a list or need arity then binding() 
+          # should be the first thing called
           arguments = args_to_list(binding())
           work = arg1 + arg2
           {arg1, arg2, arg3, arg4, work, arguments}
@@ -71,9 +70,9 @@ defmodule Variadic do
       iex> MyModule.other_function(777, 888, 999)
       {777, 888, 6, [arity: 3, arguments: [777, 888, 999]]}
 
-  Helper functions: get_arity/1 and args_to_list/1
-
-  ====================================================================================
+  ## Helper functions:
+      get_arity/1     # Returns the number of valid (set) arguments
+      args_to_list/1  # Returns a list of valid (set) arguments
 
   """
 
