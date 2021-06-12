@@ -29,7 +29,7 @@ defmodule Variadic do
 
   Arguments will named arg1, arg2....argN where N is @max_arity.
 
-  Uninitialized arguments are set to nil
+  Uninitialized arguments are set to :no_args_at_this_position
 
   ## Example:
 
@@ -58,16 +58,16 @@ defmodule Variadic do
         end
       end
 
-  ## Pass 3 arguments (note arg4 is nil):
-      iex> MyModule.test_function(1, 2, :hello)
-      {1, 2, :hello, nil, 3, [1, 2, :hello]}
+  ## Pass 3 arguments (note arg4 is :no_args_at_this_position):
+      iex> MyTestModule.test_function(1, 2, :hello)
+      {1, 2, :hello, :no_args_at_this_position, 3, [1, 2, :hello]}
 
   ## Pass 10 arguments:
-      iex> MyModule.test_function(1, 2, :hello, 4, 5, 6, :bye, %{key: 123}, [771,"something"], 10)
+      iex> MyTestModule.test_function(1, 2, :hello, 4, 5, 6, :bye, %{key: 123}, [771,"something"], 10)
       {1, 2, :hello, 4, 3, [1, 2, :hello, 4, 5, 6, :bye, %{key: 123}, [771, "something"], 10]}
 
   ## Show binding:
-      iex> MyModule.other_function(777, 888, 999)
+      iex> MyTestModule.other_function(777, 888, 999)
       {777, 888, 6, [arity: 3, arguments: [777, 888, 999]]}
 
   ## Helper functions:
@@ -78,11 +78,12 @@ defmodule Variadic do
 
   ## Probably not a good idea to make this too high
   @max_arity 25
+  @no_args_tag :no_args_at_this_position
 
   defmacro defv(name, do: block) do
     args =
       for n <- 1..@max_arity do
-        {:\\, [], [{:"arg#{n}", [], nil}, nil]}
+        {:\\, [], [{:"arg#{n}", [], nil}, @no_args_tag]}
       end
 
     function_head = {name, [], args}
@@ -104,7 +105,7 @@ defmodule Variadic do
   The function binding should be the first function called
   """
   def get_arity(binding) do
-    Enum.count(binding, fn {_, e} -> e != nil end)
+    Enum.count(binding, fn {_, e} -> e != :no_args_at_this_position end)
   end
 
   @doc """
@@ -115,7 +116,7 @@ defmodule Variadic do
   """
   def args_to_list(binding) do
     Enum.map(binding, fn {a, v} -> {arg_to_integer(a), v} end)
-    |> Enum.filter(fn {_, e} -> e != nil end)
+    |> Enum.filter(fn {_, e} -> e != :no_args_at_this_position end)
     |> Enum.sort()
     |> Enum.map(fn {_, v} -> v end)
   end
