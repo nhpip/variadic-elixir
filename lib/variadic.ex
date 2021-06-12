@@ -78,11 +78,12 @@ defmodule Variadic do
 
   ## Probably not a good idea to make this too high
   @max_arity 25
+  @no_args_tag :no_args_at_this_position
 
   defmacro defv(name, do: block) do
     args =
       for n <- 1..@max_arity do
-        {:\\, [], [{:"arg#{n}", [], nil}, :no_args_at_this_position]}
+        {:\\, [], [{:"arg#{n}", [], nil}, @no_args_tag]}
       end
 
     function_head = {name, [], args}
