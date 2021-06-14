@@ -39,7 +39,7 @@ From the shell:
 ```
   Pass 3 arguments (note arg4 is nil):
     iex(2)> MyModule.test_function(1, 2, :hello)
-    {1, 2, :hello, nil, 3, [1, 2, :hello]}
+    {1, 2, :hello, :no_args_at_this_position, 3, [1, 2, :hello]}
 
   Pass 10 arguments:
     iex(3)> MyModule.test_function(1, 2, :hello, 4, 5, 6, :bye, %{key: 123}, [771,"something"], 10)
