@@ -4,7 +4,7 @@ Simulates Variadic functions in Elixir (i.e functions with an unknown number of 
 
 Arguments will named `arg1, arg2....argN` where `N` is `@max_arity`.
 
-Uninitialized arguments are set to nil
+Uninitialized arguments are set to the atom :no_args_at_this_position
 
 **NOTE:** Currently doesn't support guards in the function head
 
