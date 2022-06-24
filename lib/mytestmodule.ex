@@ -24,11 +24,13 @@
 
  defmodule MyTestModule do
    @moduledoc """
-   Simple test module to show Variadic functions
+   Simple test module to show Variadic functions. See documentation for the Variadic module.
+
    """
 
    import Variadic
 
+   @doc false
    defv :test_function do
      # If arguments needed as a list this should be the first thing called
      arguments = args_to_list(binding())
@@ -36,6 +38,7 @@
      {arg1, arg2, arg3, arg4, work, arguments}
    end
 
+   @doc false
    defv :other_function do
      binding = binding()
      ## Do work
